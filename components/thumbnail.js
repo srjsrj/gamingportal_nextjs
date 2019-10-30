@@ -1,10 +1,9 @@
-import Link from 'next/link';
 
 const Thumbnail = props => (
-    <div className={props.data.isPromotion ? 'c-thumbnail c-thumbnail--promotion' : 'c-thumbnail'}>
-        <Link href={`/game?title=${props.data.url_part}`}>
+    <div className={props.promotion ? 'c-thumbnail c-thumbnail--promotion' : 'c-thumbnail'}>
+        <a href={`/game?title=${props.data.url_part}`}>
             <img className='c-thumbnail--image' src={props.data.thumbnail_large} alt={props.data.title}/>
-        </Link>
+        </a>
 
         <span className='c-thumbnail--title'>{props.data.title}</span>
         <style jsx>{`

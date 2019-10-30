@@ -8,18 +8,20 @@ class GameEmbed extends Component {
         }
     };
 
-    componentDidMount() {
-        fetch(`http://api.spilgames.com/v1/gamedata/88/list/by-urls?limit=24&offset=0&capabilities=desktop&urls=${this.props.gameUrl}&extended=true`)
-            .then(gameDataResponse => gameDataResponse.json())
-            .then((gamedata) => {
-                let gameDocument = gamedata.documents[0];
-                if(gameDocument) {
-                    this.setState({
-                        loading: false,
-                        gamedata: gameDocument
-                    })
-                }
-            })
+    componentDidUpdate = (prevPros) => {
+        if(this.props.gameUrl !== prevPros.gameUrl) {
+            fetch(`https://api.spilgames.com/v1/gamedata/88/list/by-urls?limit=24&offset=0&capabilities=desktop&urls=${this.props.gameUrl}&extended=true`)
+                .then(gameDataResponse => gameDataResponse.json())
+                .then((gamedata) => {
+                    let gameDocument = gamedata.documents[0];
+                    if(gameDocument) {
+                        this.setState({
+                            loading: false,
+                            gamedata: gameDocument
+                        })
+                    }
+                })
+        }
     }
 
     render() {
