@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import fetch from 'isomorphic-unfetch';
 
-import Layout from './layout';
-import Logo from './logo';
-import GameEmbed from './game_embed';
-import SimilarGames from './similar_games';
-import Advertisement from './advertisement';
+import Layout from '../components/layout';
+import Logo from '../components/logo';
+import GameEmbed from '../components/game_embed';
+import SimilarGames from '../components/similar_games';
+import Advertisement from '../components/advertisement';
 
 const Game = () => {
     const router = useRouter();

@@ -1,13 +1,16 @@
 import fetch from 'isomorphic-unfetch';
 
-import Thumbnail from './thumbnail';
-import Logo from './logo';
-import Layout from './layout';
-import Search from './search';
+import Thumbnail from '../components/thumbnail';
+import Logo from '../components/logo';
+import Layout from '../components/layout';
 
 const Index = props => (
     <Layout>
         <Logo></Logo>
+
+        {/* {props.editorPickGames.map((game, key) => (
+            <Thumbnail className='c-grid--thumbnail' id={key} key={key} data={game} promotion='true'></Thumbnail>
+        ))} */}
 
         {props.games.map((game, key) => (
             <Thumbnail className='c-grid--thumbnail' id={key} key={key} data={game}></Thumbnail>
@@ -16,16 +19,16 @@ const Index = props => (
 );
   
 Index.getInitialProps = async function() {
-    const newGamesReq = await fetch('http://api.spilgames.com/v1/gamedata/88/all?limit=90&offset=0&capabilities=desktop&capabilityBlacklist=unity&sort_field=newlist_date&sort_order=desc');
-    const newGamesReqJSON = await newGamesReq.json();
-    const newGames = newGamesReqJSON.documents;
+    const newGamesReq = require('../games_all.json');
+    // const newGamesReqJSON = await newGamesReq.json();
+    const newGames = newGamesReq.documents;
 
-    const editorPick = await fetch('http://portal-services-prd.api.internal.gc.spilcloud.com:31999/v1/promotion/editorspick?site_id=88&view=desktop');
-    const editorPickJSON = await editorPick.json();
-    const editorPickGames = editorPickJSON.map(game => ({...game, isPromotion: true})); // Mark some specific games to be a promotion
+    // const editorPick = await fetch('http://portal-services-prd.api.internal.gc.spilcloud.com:31999/v1/promotion/editorspick?site_id=88&view=desktop');
+    // const editorPickGames = await editorPick.json();
 
     return {
-        games: [...editorPickGames, ...newGames].map(game => game)
+        games: newGames.map(game => game),
+        // editorPickGames: editorPickGames
     }
 }
 

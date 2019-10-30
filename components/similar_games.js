@@ -9,7 +9,7 @@ class SimilarGames extends Component {
     };
 
     componentDidMount() {
-        fetch('http://api.spilgames.com/v1/gamedata/88/all?limit=43&offset=43&capabilities=desktop&capabilityBlacklist=touch&capabilityBlacklist=unity&sort_field=newlist_date&sort_order=desc')
+        fetch('https://api.spilgames.com/v1/gamedata/88/all?limit=43&offset=43&capabilities=desktop&capabilityBlacklist=touch&capabilityBlacklist=unity&sort_field=newlist_date&sort_order=desc')
             .then(gameDataResponse => gameDataResponse.json())
             .then((gamedata) => {
                 let games = gamedata.documents;
