@@ -1,8 +1,11 @@
 
+import Link from 'next/link';
+import Image from '../components/image';
+
 const Thumbnail = props => (
-    <div className={props.promotion ? 'c-thumbnail c-thumbnail--promotion' : 'c-thumbnail'}>
+    <div className={props.data.promotion === true ? 'c-thumbnail c-thumbnail--promotion' : 'c-thumbnail'}>
         <a href={`/game?title=${props.data.url_part}`}>
-            <img className='c-thumbnail--image' src={props.data.thumbnail_large} alt={props.data.title}/>
+            <Image class='c-thumbnail--image' key={props.id} src={props.data.thumbnail_large} alt={props.data.title}/>
         </a>
 
         <span className='c-thumbnail--title'>{props.data.title}</span>
@@ -30,16 +33,11 @@ const Thumbnail = props => (
             }
 
             .c-thumbnail:hover .c-thumbnail--image {
-                opacity: 0.7;
+                opacity: 0.8;
             }
 
             .c-thumbnail:hover .c-thumbnail--title {
                 opacity: 1;
-            }
-
-            .c-thumbnail--image {
-                object-fit: cover;
-                height: 100%;
             }
 
             .c-thumbnail--title {
@@ -58,6 +56,21 @@ const Thumbnail = props => (
 
             .c-thumbnail--promotion {
                 grid-column: span 2;
+                grid-row: span 2;
+                height: 198px;
+            }
+
+            .c-thumbnail--promotion:before {
+                content: '';
+                width: 80px;
+                height: 80px;
+                background: url('/new.svg') 100% 100% no-repeat;
+                background-size: cover;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                transform: rotate(10deg);
+                filter: drop-shadow(5px 5px 5px #000);
             }
 
             .c-thumbnail--promotion .c-thumbnail--image {

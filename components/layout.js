@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 const Layout = props => (
-    <div>
+    <div className='c-layout'>
         <Head>
         </Head>
         {props.children}
@@ -84,6 +84,9 @@ const Layout = props => (
                 padding: 10px;
                 background: #62DA96;
                 color: #093A69;
+            }
+            .h-img-thumb-sizer {
+                object-fit: cover;height: 100%;
             }
         `}</style>
     </div>
