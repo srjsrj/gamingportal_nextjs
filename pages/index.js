@@ -8,10 +8,6 @@ const Index = props => (
     <Layout>
         <Logo></Logo>
 
-        {/* {props.editorPickGames.map((game, key) => (
-            <Thumbnail className='c-grid--thumbnail' id={key} key={key} data={game} promotion='true'></Thumbnail>
-        ))} */}
-
         {props.games.map((game, key) => (
             <Thumbnail className='c-grid--thumbnail' id={key} key={key} data={game}></Thumbnail>
         ))}
@@ -20,15 +16,16 @@ const Index = props => (
   
 Index.getInitialProps = async function() {
     const newGamesReq = require('../games_all.json');
-    // const newGamesReqJSON = await newGamesReq.json();
     const newGames = newGamesReq.documents;
-
-    // const editorPick = await fetch('http://portal-services-prd.api.internal.gc.spilcloud.com:31999/v1/promotion/editorspick?site_id=88&view=desktop');
-    // const editorPickGames = await editorPick.json();
+    newGames.length = 70; // Limit games
 
     return {
-        games: newGames.map(game => game),
-        // editorPickGames: editorPickGames
+        games: newGames.map((game, index) => {
+            return {
+                ...game,
+                promotion: (index < 2) ? true : false
+            };
+        })
     }
 }
 
