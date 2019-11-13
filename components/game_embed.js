@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import React, { Component } from 'react';
+import { NextSeo } from 'next-seo';
 
 class GameEmbed extends Component {
     state = {
@@ -58,6 +59,10 @@ class GameEmbed extends Component {
                         border: none;
                     }
                 `}</style>
+                <NextSeo
+                    title={this.state.gamedata.title}
+                    description={this.state.gamedata.description}
+                />
             </figure>
         )
     }

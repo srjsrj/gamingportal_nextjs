@@ -7,11 +7,11 @@ const Image = ({src, alt}) => {
     const [imageRef, setImageRef] = useState();
 
     const onLoad = event => {
-        event.target.classList.add('img-loaded');
+        event.target.classList.add('h-img-thumb-sizer_img-loaded');
     }
 
     const onError = event => {
-        event.target.classList.add('img-error');
+        event.target.classList.add('h-img-thumb-sizer_img-error');
     }
 
     useEffect(() => {
@@ -23,10 +23,7 @@ const Image = ({src, alt}) => {
                 observer = new IntersectionObserver(
                     entries => {
                       entries.forEach(entry => {
-                        if (
-                          !didCancel &&
-                          (entry.intersectionRatio > 0 || entry.isIntersecting)
-                        ) {
+                        if(!didCancel && (entry.intersectionRatio > 0 || entry.isIntersecting)) {
                           setImageSrc(src)
                           observer.unobserve(imageRef)
                         }

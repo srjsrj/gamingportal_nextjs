@@ -30,6 +30,7 @@ const Game = () => {
                 }
 
                 .advertisment {
+                    display: none;
                     grid-column-start: 12;
                     grid-column-end: 14;
                     grid-row-start: 1;

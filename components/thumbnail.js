@@ -4,7 +4,7 @@ import Image from '../components/image';
 
 const Thumbnail = props => (
     <div className={props.data.promotion === true ? 'c-thumbnail c-thumbnail--promotion' : 'c-thumbnail'}>
-        <a href={`/game?title=${props.data.url_part}`}>
+        <a className='c-thumbnail--link' href={`/game?title=${props.data.url_part}`}>
             <Image class='c-thumbnail--image' key={props.id} src={props.data.thumbnail_large} alt={props.data.title}/>
         </a>
 
@@ -16,7 +16,7 @@ const Thumbnail = props => (
                 border-radius: 10px;
                 background: #fff;
                 transition: transform .2s ease, box-shadow .2s ease;
-                will-change: transition;
+                will-change: transform, box-shadow;
                 overflow: hidden;
                 height: 94px;
                 cursor: pointer;
@@ -30,6 +30,25 @@ const Thumbnail = props => (
             .c-thumbnail:active {
                 box-shadow: 0 0 2px rgba(0, 0, 0, .9);
                 transform: scale(1);
+            }
+
+            .c-thumbnail--link:before {
+                content: '';
+                width: 10%;
+                height: 150%;
+                background: #fff;
+                position: absolute;
+                top: -50%;
+                left: 0;
+                transform: rotate(30deg) translate(-100px, 0);
+                filter: blur(10px);
+                transition: transform .2s ease, filter .2s ease;
+                will-change: transform, filter;
+            }
+
+            .c-thumbnail:hover .c-thumbnail--link:before {
+                transform: rotate(40deg) translate(800%, 0);
+                filter: blur(15px);
             }
 
             .c-thumbnail:hover .c-thumbnail--image {
