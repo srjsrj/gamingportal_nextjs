@@ -1,10 +1,12 @@
 import Head from "next/head";
+import { YMInitializer } from 'react-yandex-metrika';
 
 const Layout = props => (
     <div className='c-layout'>
         <Head>
         </Head>
         {props.children}
+        <YMInitializer accounts={[56209918]} options={{defer: true}}/>
         <style jsx>{`
             {
                 display: grid;
@@ -87,6 +89,12 @@ const Layout = props => (
             }
             .h-img-thumb-sizer {
                 object-fit: cover;height: 100%;
+                opacity: 0;
+                transition: opacity .3s ease .3s;
+                will-change: opacity;
+            }
+            .h-img-thumb-sizer_img-loaded {
+                opacity: 1;
             }
         `}</style>
     </div>
